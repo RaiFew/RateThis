@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,42 +9,48 @@
 </head>
 <style>
     body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            background-color: #1e1e1e;
-        }
-        .box {
-            position: relative;
-            min-width: 430px;
-            max-width: 430px;
-            padding: 2rem;
-            margin: 1rem;
-        }
-        .flex-container {
-            margin-bottom: 1rem;
-        }
-        .title {
-            display: block;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-        }
-        .button {
-            width: 100%;
-            margin-top: 1rem;
-            background-color: #60a5fa;
-        }
-        .button:hover {
-            background-color: #60a5fa;
-            color: white;
-        }
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        background-color: #1e1e1e;
+    }
+
+    .box {
+        position: relative;
+        min-width: 430px;
+        max-width: 430px;
+        padding: 2rem;
+        margin: 1rem;
+    }
+
+    .flex-container {
+        margin-bottom: 1rem;
+    }
+
+    .title {
+        display: block;
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .button {
+        width: 100%;
+        margin-top: 1rem;
+        background-color: #60a5fa;
+    }
+
+    .button:hover {
+        background-color: #60a5fa;
+        color: white;
+    }
 </style>
+
 <body>
     <div>
-<?php if (isset($_GET['status'])) {
+        <?php if (isset($_GET['status'])) {
     $status = $_GET['status'];
     $message_text = '';
     $message_class = '';
@@ -65,6 +72,15 @@
             $message_text = "กรุณากรอกข้อมูลให้ครบทุกช่อง";
             $message_class = 'error';
             break;
+        case 'linksent_simulation':
+            if (isset($_GET['reset_link'])) {
+                $message_text = "หากข้อมูลถูกต้อง ลิงก์สำหรับรีเซ็ตรหัสผ่านถูกสร้างขึ้นแล้ว (ปกติจะส่งไปทางอีเมล): <br><a href='" . htmlspecialchars(urldecode($_GET['reset_link'])) . "'>" . htmlspecialchars(urldecode($_GET['reset_link'])) . "</a><br><strong>คำแนะนำ:</strong> คัดลอกลิงก์นี้แล้วเปิดในเบราว์เซอร์ใหม่ หรือคลิกที่นี่";
+                $message_class = 'success'; // หรือ 'info' หรือ class อื่นๆ ที่เหมาะสม
+            } else {
+                $message_text = "เกิดข้อผิดพลาดในการสร้างลิงก์รีเซ็ต";
+                $message_class = 'error';
+            }
+            break;
         // คุณสามารถเพิ่ม case อื่นๆ ได้ตามต้องการ
     }
 
@@ -73,25 +89,26 @@
     }
 }
 ?>
-    <form class="box" action="process_forgot.php" method="post">
-    <label class="title">Forgot Password</label>
-        <div class="flex-container">
+        <form class="box" action="process_forgot.php" method="post">
+            <label class="title">Forgot Password</label>
+            <div class="flex-container">
                 <strong>Username</strong>
-            <div class="control">
-                <input class="input" type="text" name="username" placeholder="Username">
+                <div class="control">
+                    <input class="input" type="text" name="username" placeholder="Username">
+                </div>
             </div>
-        </div>
-        <div class="flex-container">
-            <strong>Email</strong>
-            <div class="control">
-                <input class="input" type="email" name="email" placeholder="email" required>
+            <div class="flex-container">
+                <strong>Email</strong>
+                <div class="control">
+                    <input class="input" type="email" name="email" placeholder="email" required>
+                </div>
             </div>
-        </div>
-        <button class="button" type="submit" id="Forgotpass" name="Forgotpass">Submit</button>
-        <div class="is-centered register">
-            <a href="login.php">If you have an account, login here</a>
-        </div>
-    </form>
+            <button class="button" type="submit" id="Forgotpass" name="Forgotpass">Submit</button>
+            <div class="is-centered register">
+                <a href="login.php">If you have an account, login here</a>
+            </div>
+        </form>
     </div>
 </body>
+
 </html>

@@ -146,12 +146,13 @@
                 </div>
             </div>
             <button class="button" type="submit" value="new_pass">Submit</button>
+            </form>
             <?php else: // ถ้า Token ไม่ valid หรือมี error message อื่นๆ ที่ทำให้ $token_is_valid เป็น false ?>
             <?php if(empty($display_message)) { // ถ้ายังไม่มี error message ใดๆ แต่ token ก็ไม่ valid (เช่น เข้ามาหน้าตรงๆ)
                 echo '<p class="message error-message">ไม่สามารถดำเนินการได้ ลิงก์อาจไม่ถูกต้อง</p>';
             }?>
             <div class="link-forgotpass">
-        </form>
+            <a href="forgotpass.php">กลับไปยังหน้าลืมรหัสผ่าน</a> </div>
         <?php endif; ?>
     </div>
 </body>

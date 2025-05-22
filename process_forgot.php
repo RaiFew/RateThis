@@ -56,7 +56,7 @@ if (isset($_POST['username']) && isset($_POST['email'])){
                     error_log("MySQLi prepare failed (insert token): " . $conn->error);
                     if ($stmt) $stmt->close();      // <--- เพิ่มการปิด statement หลัก
                     if ($conn) $conn->close();      // <--- เพิ่มการปิด connection
-                    header("Location: forgot_password_form.php?status=dberror");
+                    header("Location: forgotpass.php?status=dberror");
                     exit;
                 }
             $stmt_insert->bind_param("sss", $db_email, $token, $expires_at);// ใช้ $db_email ที่ดึงจากฐานข้อมูล
@@ -67,12 +67,13 @@ if (isset($_POST['username']) && isset($_POST['email'])){
                 // $reset_link = "http://localhost/your_project_folder/reset_password_form.php?token=" . $token;
                 // mail($db_email, "Reset Your Password", "Click here to reset: " . $reset_link);
 
-                // สำหรับโปรเจกต์เล็ก: ส่งลิงก์กลับไปแสดงผล
-                $actual_reset_link = "forgotpass.php?token=" . $token;
+                //ส่งลิงก์กลับไปแสดงผล
+                $user_clickable_link = "newpass.php?token=" . $token;
+
                 if ($stmt_insert) $stmt_insert->close(); // ปิด stmt_insert
                 if ($stmt) $stmt->close();
                 if ($conn) $conn->close();
-                header("Location: newpass.php?status=linksent_simulation&reset_link=" . urlencode($actual_reset_link));
+                header("Location: forgotpass.php?status=linksent_simulation&reset_link=" . urlencode($user_clickable_link));
                 exit;
 
             }//ของ stmt_insert
