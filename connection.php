@@ -4,6 +4,8 @@ $username = "root";
 $password = "";
 $dbname = "ratethis";//ชื่อ database
 
+
+date_default_timezone_set('UTC');
 // สร้างการเชื่อมต่อ
 $conn = new mysqli($hostname, $username, $password, $dbname);
 

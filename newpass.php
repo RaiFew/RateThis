@@ -10,7 +10,7 @@
             $display_message = "Token ไม่ถูกต้องหรือไม่พบ Token ในลิงก์";
         }else {
             // ตรวจสอบ Token กับฐานข้อมูล
-            $sql_check_token = "SELECT email_reset FROM password_resets WHERE token_reset = ? AND expires_at_reset > NOW()";
+            $sql_check_token = "SELECT email_reset FROM password_resets WHERE token_reset = ? AND expires_at_reset > UTC_TIMESTAMP()";
             $stmt_check = $conn->prepare($sql_check_token);
     
             if ($stmt_check) {
@@ -26,14 +26,14 @@
                     // Token ไม่พบในฐานข้อมูล หรือ หมดอายุแล้ว
                     $display_message = "ลิงก์สำหรับตั้งรหัสผ่านใหม่ไม่ถูกต้อง, หมดอายุ หรือถูกใช้งานไปแล้ว";
     
-                    // (Optional) ลบ Token ที่ไม่ถูกต้องหรือหมดอายุออกจากฐานข้อมูล
+                    /*// (Optional) ลบ Token ที่ไม่ถูกต้องหรือหมดอายุออกจากฐานข้อมูล
                     $sql_delete_invalid = "DELETE FROM password_resets WHERE token_reset = ? OR expires_at_reset <= NOW()";
                     $stmt_delete = $conn->prepare($sql_delete_invalid);
                     if ($stmt_delete) {
                          $stmt_delete->bind_param("s", $token_from_url); // ใช้ token ที่รับมาเพื่อลบตัวมันเองถ้าไม่ valid หรือลบตัวอื่นๆ ที่หมดอายุ
                          $stmt_delete->execute();
                          $stmt_delete->close();
-                    }
+                    }*/
                 }
                 $stmt_check->close();
             }else {

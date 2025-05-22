@@ -9,7 +9,7 @@ if (isset($_POST['new_password']) && isset($_POST['confirm_password'])&& isset($
         header("Location: newpass.php?token=" . urlencode($token) . "&status=pwdempty"); 
         exit;
     }
-    $query_check_token = "SELECT email_reset FROM password_resets WHERE token_reset = ? and expires_at_reset > NOW()";
+    $query_check_token = "SELECT email_reset FROM password_resets WHERE token_reset = ? and expires_at_reset > UTC_TIMESTAMP()";
     $stmt = $conn->prepare($query_check_token);
     if ($stmt === false) {
         // กรณี prepare statement ไม่สำเร็จ (อาจมีปัญหาที่ SQL query หรือการเชื่อมต่อ)
