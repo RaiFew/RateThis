@@ -74,7 +74,7 @@
             break;
         case 'linksent_simulation':
             if (isset($_GET['reset_link'])) {
-                $message_text = "หากข้อมูลถูกต้อง ลิงก์สำหรับรีเซ็ตรหัสผ่านถูกสร้างขึ้นแล้ว (ปกติจะส่งไปทางอีเมล): <br><a href='" . htmlspecialchars(urldecode($_GET['reset_link'])) . "'>" . htmlspecialchars(urldecode($_GET['reset_link'])) . "</a><br><strong>คำแนะนำ:</strong> คัดลอกลิงก์นี้แล้วเปิดในเบราว์เซอร์ใหม่ หรือคลิกที่นี่";
+                $message_text = "หากข้อมูลถูกต้อง ลิงก์สำหรับรีเซ็ตรหัสผ่านถูกสร้างขึ้นแล้ว: <br><a href='" . htmlspecialchars(urldecode($_GET['reset_link'])) . "'>" . htmlspecialchars(urldecode($_GET['reset_link'])) . "</a><br><strong>คำแนะนำ:</strong> คัดลอกลิงก์นี้แล้วเปิดในเบราว์เซอร์ใหม่ หรือคลิกที่นี่";
                 $message_class = 'success'; // หรือ 'info' หรือ class อื่นๆ ที่เหมาะสม
             } else {
                 $message_text = "เกิดข้อผิดพลาดในการสร้างลิงก์รีเซ็ต";
