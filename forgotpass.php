@@ -85,7 +85,7 @@
     }
 
     if (!empty($message_text)) {
-        echo '<div class="message is-centered ' . $message_class . ' mb-4">' . htmlspecialchars($message_text) . '</div>';
+        echo '<div class="message is-centered ' . $message_class . ' mb-4">' . $message_text . '</div>';
     }
 }
 ?>
