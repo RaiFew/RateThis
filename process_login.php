@@ -27,9 +27,11 @@ require_once('connection.php');
                 $_SESSION['username_acc'] = $user_rows['username_acc'];
                 $_SESSION['role_acc'] = $user_rows['role_acc'];
                 if ($user_rows['role_acc'] === 'admin') {
-                    header("Location: admin.php");
+                    header("Location: admin.php"); // admin ไป admin.php
+                    exit;
                 } else {
-                    header("Location: index.php"); // หรือ index.php
+                    header("Location: index.php"); // member ไป index.php
+                    exit;
                 }
                 exit ;
             }else {
