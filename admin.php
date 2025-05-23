@@ -57,7 +57,7 @@ if ($_SESSION['role_acc'] !== 'admin') {
 </head>
 <body>
         <div class="is-centered">
-            <?php echo htmlspecialchars($show_user['username_acc']); ?>
+            <?php echo '<label class="title">'. htmlspecialchars($show_user['username_acc']).'</label>'; ?>
         </div>
         <div class="is-centered register">
             <a href="index.php" class="button">Go to main page</a>
